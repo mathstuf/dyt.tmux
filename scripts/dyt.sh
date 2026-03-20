@@ -30,10 +30,9 @@ trap 'rm -f "$LOCKFILE" "$TMPFILE"' EXIT
 ORIGIN_PANE="$(tmux display-message -p '#{pane_id}')"
 
 # --- record in a popup ---
-# stderr stays on the popup tty so the user sees "Recording... press Enter to stop."
-# stdout (the transcript) is redirected to TMPFILE.
+# the transcript is written to TMPFILE.
 tmux display-popup -E -w 80 -h 6 \
-    "dyt --no-clipboard --record --daemon '$DAEMON' > '$TMPFILE' 2>/dev/tty"
+    "dyt --no-clipboard --record --daemon '$DAEMON' --output '$TMPFILE'"
 
 # --- inject transcript ---
 TRANSCRIPT="$(<"$TMPFILE")"
