@@ -33,7 +33,7 @@ ORIGIN_PANE="$(tmux display-message -p '#{pane_id}')"
 # stderr stays on the popup tty so the user sees "Recording... press Enter to stop."
 # stdout (the transcript) is redirected to TMPFILE.
 tmux display-popup -E -w 80 -h 6 \
-    "dyt --record --daemon '$DAEMON' > '$TMPFILE' 2>/dev/tty"
+    "dyt --no-clipboard --record --daemon '$DAEMON' > '$TMPFILE' 2>/dev/tty"
 
 # --- inject transcript ---
 TRANSCRIPT="$(<"$TMPFILE")"
